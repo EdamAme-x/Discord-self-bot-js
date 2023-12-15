@@ -1,25 +1,25 @@
-import { DiscordClient, MessageDto } from "npm:discord-gateways";
-import { sendText } from "./sendText.ts";
-import { CommandRouter } from "./commandRouter.ts";
+import { DiscordClient, MessageDto } from 'npm:discord-gateways';
+import { sendText } from './sendText.ts';
+import { CommandRouter } from './commandRouter.ts';
 
-const client = new DiscordClient(Deno.env.get("token") ?? "");
+const client = new DiscordClient(Deno.env.get('token') ?? '');
 
 const Router = new CommandRouter([
-  {
-    name: "$test",
-    type: "command",
-    execute: (message: MessageDto) => {
-      sendText("[!] TEST PASSED 🔥", message);
+    {
+        name: '$test',
+        type: 'command',
+        execute: (message: MessageDto) => {
+            sendText('[!] TEST PASSED 🔥', message);
+        },
     },
-  },
 ]);
 
-client.on("messageCreate", (message: MessageDto) => {
-  Router.router(message);
+client.on('messageCreate', (message: MessageDto) => {
+    Router.router(message);
 });
 
 client.connect();
 
 Deno.serve(() => {
-  return new Response("WebSocket Only");
+    return new Response('WebSocket Only');
 });
