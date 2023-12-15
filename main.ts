@@ -41,7 +41,7 @@ const Router = new CommandRouter([
             const safeWorker = new Worker(new URL('./functions/worker.ts', import.meta.url), {
                 type: 'module',
                 deno: {
-                    permissions: "none",
+                    permissions: 'none',
                     // @ts-ignore NOTE: UNSTABLE
                     namespace: false,
                 },
@@ -66,8 +66,8 @@ const Router = new CommandRouter([
                 `[!] HELP \n ${Router.commands.map((command) => `${command.name}: [${command.permission}]`).join('\n')}`,
                 message,
             );
-        }
-    }
+        },
+    },
 ]);
 
 client.on('messageCreate', (message: MessageDto) => {
