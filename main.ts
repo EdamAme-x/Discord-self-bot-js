@@ -57,6 +57,17 @@ const Router = new CommandRouter([
             };
         },
     },
+    {
+        name: '$help',
+        type: 'command',
+        permission: 'everyone',
+        execute: (message: MessageDto) => {
+            sendText(
+                `[!] HELP \n ${Router.commands.map((command) => `${command.name}: [${command.permission}]`).join('\n')}`,
+                message,
+            );
+        }
+    }
 ]);
 
 client.on('messageCreate', (message: MessageDto) => {

@@ -15,7 +15,7 @@ export type Command = {
 
 export class CommandRouter {
     constructor(
-        private commands: Command[],
+        public commands: Command[],
     ) {}
 
     router(message: MessageDto) {
