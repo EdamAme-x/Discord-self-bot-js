@@ -19,7 +19,7 @@ const Router = new CommandRouter([
         execute: (message: MessageDto) => {
             replyText('[!] TEST PASSED 🔥', message);
         },
-    }
+    },
 ]);
 
 client.on('messageCreate', (message: MessageDto) => {
