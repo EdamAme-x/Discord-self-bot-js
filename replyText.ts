@@ -4,6 +4,7 @@ export async function replyText(
   text: string,
   message: MessageDto
 ): Promise<boolean> {
+
   const response = await fetch(
     "https://discord.com/api/v9/channels/" + message.channel_id + "/messages",
     {
@@ -33,10 +34,10 @@ export async function replyText(
           channel_id: message.channel_id,
           message_id: message.id,
         },
-        // allowed_mentions: {
-        //   parse: ["users", "roles", "everyone"],
-        //   replied_user: false,
-        // },
+        allowed_mentions: {
+          parse: ["users", "roles", "everyone"],
+          replied_user: false,
+        },
         flags: 0,
       }),
       method: "POST",
