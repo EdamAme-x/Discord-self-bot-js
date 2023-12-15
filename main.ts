@@ -47,6 +47,8 @@ const Router = new CommandRouter([
                         'write': false,
                         'net': false,
                         'run': false,
+                        'ffi': false,
+                        'sys': false,
                     },
                 },
             });
