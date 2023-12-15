@@ -1,6 +1,6 @@
-import { MessageDto } from '../disgate.js';
+import { MessageDto } from '@/disgate.js';
 
-export async function replyText(
+export async function sendText(
     text: string,
     message: MessageDto,
 ): Promise<boolean> {
@@ -27,15 +27,6 @@ export async function replyText(
                 mobile_network_type: 'unknown',
                 content: text,
                 tts: false,
-                message_reference: {
-                    guild_id: message.guild_id,
-                    channel_id: message.channel_id,
-                    message_id: message.id,
-                },
-                allowed_mentions: {
-                    parse: ['users', 'roles', 'everyone'],
-                    replied_user: false,
-                },
                 flags: 0,
             }),
             method: 'POST',

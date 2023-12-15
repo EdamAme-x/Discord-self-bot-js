@@ -1,4 +1,4 @@
-import { MessageDto } from '../disgate.js';
+import { MessageDto } from '@/disgate.js';
 
 export type ArgmentType = {
     name: string | 'general';
