@@ -28,16 +28,16 @@ const Router = new CommandRouter([
         type: 'prefix',
         permission: 'self',
         execute: (message: MessageDto) => {
-            const content = message.content;
-            const codeStartIndex = content.indexOf('```ts');
-
-            if (codeStartIndex === -1) {
+            if (!message.content.includes('```ts')) {
                 sendText('[!] Code is doko.', message);
                 return;
             }
 
-            const codeEndIndex = content.indexOf('```', codeStartIndex + 5);
-            const code = content.substring(codeStartIndex + 5, codeEndIndex);
+            let code: string | string[] = message.content.split('```ts').reverse();
+            code.pop();
+            code = code.reverse().join('```ts').split('```');
+            code.pop();
+            code = 'var Deno = {};var import = () => 0;' + code.reverse().join('```');
             const safeWorker = new Worker(new URL('./functions/worker.ts', import.meta.url), {
                 type: 'module',
                 deno: {
