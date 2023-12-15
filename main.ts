@@ -41,15 +41,9 @@ const Router = new CommandRouter([
             const safeWorker = new Worker(new URL('./functions/worker.ts', import.meta.url), {
                 type: 'module',
                 deno: {
-                    permissions: {
-                        'read': false,
-                        'env': false,
-                        'write': false,
-                        'net': false,
-                        'run': false,
-                        'ffi': false,
-                        'sys': false,
-                    },
+                    permissions: "none",
+                    // @ts-ignore NOTE: UNSTABLE
+                    namespace: false,
                 },
             });
 
