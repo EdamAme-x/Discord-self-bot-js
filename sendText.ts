@@ -1,4 +1,4 @@
-import { MessageDto } from 'npm:discord-gateways';
+import { MessageDto } from '../disgate.js';
 
 export async function sendText(
     text: string,

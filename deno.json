@@ -1,6 +1,10 @@
 {
+    "lock": false,
     "tasks": {
         "dev": "deno run -A --watch main.ts"
+    },
+    "imports": {
+        "../disgate.js": "npm:discord-gateways"
     },
     "lint": {
         "rules": {
