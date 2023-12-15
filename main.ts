@@ -1,4 +1,4 @@
-import { DiscordClient, MessageDto } from '@/disgate.js';
+import { DiscordClient, MessageDto } from './deps.ts';
 import { sendText } from './functions/sendText.ts';
 import { replyText } from './functions/replyText.ts';
 import { CommandRouter } from './commandRouter.ts';

@@ -1,4 +1,4 @@
-import { MessageDto } from '@/disgate.js';
+import { MessageDto } from '../deps.ts';
 import { CONST } from '../config.ts';
 
 export async function replyText(
