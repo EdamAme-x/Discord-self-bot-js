@@ -1,4 +1,5 @@
 import { MessageDto } from '@/disgate.js';
+import { CONST } from './config.ts';
 
 export type ArgmentType = {
     name: string | 'general';
@@ -8,6 +9,7 @@ export type ArgmentType = {
 export type Command = {
     name: string;
     type: 'prefix' | 'command';
+    permission: 'everyone' | 'self';
     execute: (message: MessageDto, args?: ArgmentType[]) => void;
 };
 
@@ -20,11 +22,24 @@ export class CommandRouter {
         for (const command of this.commands) {
             if (command.type === 'prefix') {
                 if (message.content.startsWith(command.name)) {
-                    command.execute(message, this.parseArgment(message));
+
+                    if (command.permission === 'self') {
+                        if (message.author.id === CONST.id) {
+                            command.execute(message, this.parseArgment(message));
+                        }
+                    }else {
+                        command.execute(message, this.parseArgment(message));
+                    }
                 }
             } else {
                 if (message.content === command.name) {
-                    command.execute(message);
+                    if (command.permission === 'self') {
+                        if (message.author.id === CONST.id) {
+                            command.execute(message, this.parseArgment(message));
+                        }
+                    }else {
+                        command.execute(message, this.parseArgment(message));
+                    }
                 }
             }
         }

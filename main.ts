@@ -10,6 +10,7 @@ const Router = new CommandRouter([
     {
         name: '$test',
         type: 'command',
+        permission: "everyone",
         execute: (message: MessageDto) => {
             sendText('[!] TEST PASSED 🔥', message);
         },
@@ -17,6 +18,7 @@ const Router = new CommandRouter([
     {
         name: '$test2',
         type: 'command',
+        permission: "everyone",
         execute: (message: MessageDto) => {
             replyText('[!] TEST PASSED 🔥', message);
         },
@@ -24,39 +26,41 @@ const Router = new CommandRouter([
     {
         name: '$js',
         type: 'prefix',
+        permission: "self",
         execute: (message: MessageDto) => {
-            if (message.content.includes('```ts')) {
-                sendText("[!] Code is doko.", message);
+            if (!message.content.includes('```ts')) {
+                sendText('[!] Code is doko.', message);
                 return;
             }
 
-            let code: string | string[] = message.content.split("```ts").reverse();
+            let code: string | string[] = message.content.split('```ts').reverse();
             code.pop();
-            code = code.reverse().join("```ts").split("```");
+            code = code.reverse().join('```ts').split('```');
             code.pop();
-            code = code.reverse().join("```");
+            code = "var Deno = {};var import = () => 0;" + code.reverse().join('```');
             const safeWorker = new Worker(new URL('./functions/worker.ts', import.meta.url), {
                 type: 'module',
                 deno: {
                     permissions: {
-                        "read": false,
-                        "env": false,
-                        "write": false,
-                        "net": false
+                        'read': false,
+                        'env': false,
+                        'write': false,
+                        'net': false,
+                        'run': false,
                     },
-                }
-            })
+                },
+            });
 
             safeWorker.postMessage({
-                code: code
-            })
+                code: code,
+            });
 
             safeWorker.onmessage = ({ data }) => {
                 const result = data.result;
                 replyText(result, message);
-            }
-        }
-    }
+            };
+        },
+    },
 ]);
 
 client.on('messageCreate', (message: MessageDto) => {
