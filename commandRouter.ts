@@ -22,12 +22,11 @@ export class CommandRouter {
         for (const command of this.commands) {
             if (command.type === 'prefix') {
                 if (message.content.startsWith(command.name)) {
-
                     if (command.permission === 'self') {
                         if (message.author.id === CONST.id) {
                             command.execute(message, this.parseArgment(message));
                         }
-                    }else {
+                    } else {
                         command.execute(message, this.parseArgment(message));
                     }
                 }
@@ -37,7 +36,7 @@ export class CommandRouter {
                         if (message.author.id === CONST.id) {
                             command.execute(message, this.parseArgment(message));
                         }
-                    }else {
+                    } else {
                         command.execute(message, this.parseArgment(message));
                     }
                 }

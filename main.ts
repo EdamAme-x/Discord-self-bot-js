@@ -10,7 +10,7 @@ const Router = new CommandRouter([
     {
         name: '$test',
         type: 'command',
-        permission: "everyone",
+        permission: 'everyone',
         execute: (message: MessageDto) => {
             sendText('[!] TEST PASSED 🔥', message);
         },
@@ -18,7 +18,7 @@ const Router = new CommandRouter([
     {
         name: '$test2',
         type: 'command',
-        permission: "everyone",
+        permission: 'everyone',
         execute: (message: MessageDto) => {
             replyText('[!] TEST PASSED 🔥', message);
         },
@@ -26,7 +26,7 @@ const Router = new CommandRouter([
     {
         name: '$js',
         type: 'prefix',
-        permission: "self",
+        permission: 'self',
         execute: (message: MessageDto) => {
             if (!message.content.includes('```ts')) {
                 sendText('[!] Code is doko.', message);
@@ -37,7 +37,7 @@ const Router = new CommandRouter([
             code.pop();
             code = code.reverse().join('```ts').split('```');
             code.pop();
-            code = "var Deno = {};var import = () => 0;" + code.reverse().join('```');
+            code = 'var Deno = {};var import = () => 0;' + code.reverse().join('```');
             const safeWorker = new Worker(new URL('./functions/worker.ts', import.meta.url), {
                 type: 'module',
                 deno: {
