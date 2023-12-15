@@ -31,41 +31,7 @@ export class DiscordClient extends EventEmitter {
 
             this.seq = s ? s : this.seq;
 
-            if (op == 1) {
-                this.heartbeat();
-            } else if (op == 9) {
-                setTimeout(() => {
-                    this.identify();
-                }, 3000);
-            } else if (op == 10) {
-                this.heartbeatTimer = setInterval(() => {
-                    this.heartbeat();
-                }, d.heartbeat_interval);
-
-                if (this.session_id && this.seq) {
-                    this.ws.send(JSON.stringify({
-                        'op': 6,
-                        'd': {
-                            'token': this.discordToken,
-                            'session_id': this.session_id,
-                            'seq': this.seq
-                        }
-                    }));
-                } else {
-                    this.identify();
-                }
-            } else if (op == 11) {
-                this.ack = true;
-            }
-
-            switch (t) {
-                case 'READY':
-                    this.session_id = d.session_id;
-                    break;
-                case 'MESSAGE_CREATE':
-                    this.emit('messageCreate', d);
-                    break;
-            }
+            console.log(payload);
         })
     }
 
