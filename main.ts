@@ -1,4 +1,4 @@
-import { DiscordClient, MessageDto } from 'discord-gateways';
+import { DiscordClient, MessageDto } from 'npm:discord-gateways';
 
 const client = new DiscordClient(Deno.env.get("token") ?? "");
 
