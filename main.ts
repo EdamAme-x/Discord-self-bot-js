@@ -103,6 +103,8 @@ export class DiscordClient extends EventEmitter {
     }
 }
 
+new DiscordClient(Deno.env.get("AccountToken"))
+
 Deno.serve(() => {
   return new Response("WebSocket Only")
 })
