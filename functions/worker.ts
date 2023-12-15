@@ -3,7 +3,13 @@ self.onmessage = ({ data }) => {
 
   const code = data.code;
 
-  const result = eval(code);
+  let result = "";
+
+  try {
+      result = eval(`(() => {${code}})()`);
+  }catch (e) {
+      result = "Unknown Error";
+  }
 
   self.postMessage({
     result: result
