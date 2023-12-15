@@ -21,6 +21,42 @@ const Router = new CommandRouter([
             replyText('[!] TEST PASSED 🔥', message);
         },
     },
+    {
+        name: '$js',
+        type: 'prefix',
+        execute: (message: MessageDto) => {
+            if (message.content.includes('```ts')) {
+                sendText("[!] Code is doko.", message);
+                return;
+            }
+
+            let code: string | string[] = message.content.split("```ts").reverse();
+            code.pop();
+            code = code.reverse().join("```ts").split("```");
+            code.pop();
+            code = code.reverse().join("```");
+            const safeWorker = new Worker(new URL('./functions/worker.ts', import.meta.url), {
+                type: 'module',
+                deno: {
+                    permissions: {
+                        "read": false,
+                        "env": false,
+                        "write": false,
+                        "net": false
+                    },
+                }
+            })
+
+            safeWorker.postMessage({
+                code: code
+            })
+
+            safeWorker.onmessage = ({ data }) => {
+                const result = data.result;
+                replyText(result, message);
+            }
+        }
+    }
 ]);
 
 client.on('messageCreate', (message: MessageDto) => {
