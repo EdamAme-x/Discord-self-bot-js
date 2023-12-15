@@ -1,4 +1,4 @@
-import { MessageDto } from '../disgate.js';
+import { MessageDto } from '.,/disgate.js';
 
 export async function sendText(
     text: string,

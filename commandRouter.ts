@@ -1,9 +1,9 @@
-import { MessageDto } from '../disgate.js';
+import { MessageDto } from '.,/disgate.js';
 
 export type Command = {
     name: string;
     type: 'prefix' | 'command';
-    execute: (message: MessageDto) => void;
+    execute: (message: MessageDto, args?: string[]) => void;
 };
 
 export class CommandRouter {
@@ -15,7 +15,7 @@ export class CommandRouter {
         for (const command of this.commands) {
             if (command.type === 'prefix') {
                 if (message.content.startsWith(command.name)) {
-                    command.execute(message);
+                    command.execute(message, message.content.split(' '));
                 }
             } else {
                 if (message.content === command.name) {
