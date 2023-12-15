@@ -6,7 +6,6 @@ import {
 const client = new DiscordClient(Deno.env.get("token") ?? "");
 
 client.on("messageCreate", (message: MessageDto) => {
-    message = JSON.parse(message)
     const content = message.content;
 
     if (content.startsWith("$test")) {
@@ -26,7 +25,6 @@ client.on("messageCreate", (message: MessageDto) => {
                 "x-discord-locale": "ja",
                 "x-discord-timezone": "Asia/Tokyo"
             },
-            "referrer": `https://discord.com/channels/${message.channel_id}/${message.id}`,
             "referrerPolicy": "strict-origin-when-cross-origin",
             "body": "{\"mobile_network_type\":\"unknown\",\"content\":\"[TEST] PASSED!\",\"tts\":false,\"flags\":0}",
             "method": "POST",
