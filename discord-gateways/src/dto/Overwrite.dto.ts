@@ -3,6 +3,6 @@ export class OverwriteDto {
         public id: string,
         public type: 0 | 1,
         public allow: string,
-        public deny: string
+        public deny: string,
     ) {}
 }

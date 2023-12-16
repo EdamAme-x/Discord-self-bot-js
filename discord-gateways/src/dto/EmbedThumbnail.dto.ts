@@ -3,6 +3,6 @@ export class EmbedThumbnailDto {
         public url?: string,
         public proxy_url?: string,
         public height?: number,
-        public width?: number
+        public width?: number,
     ) {}
 }

@@ -5,6 +5,6 @@ export class ThreadMetadataDto {
         public archive_timestamp: Date,
         public locked: boolean,
         public invitable?: boolean,
-        public create_timestamp?: Date | null
+        public create_timestamp?: Date | null,
     ) {}
 }

@@ -1,4 +1,4 @@
-import { UserDto } from "./User.dto.ts";
+import { UserDto } from './User.dto.ts';
 
 export class GuildMemberDto {
     constructor(
@@ -8,10 +8,10 @@ export class GuildMemberDto {
         public mute: boolean,
         public user?: UserDto,
         public nick?: string | null,
-        public avatar?: string | null,        
+        public avatar?: string | null,
         public premium_since?: Date | null,
         public pending?: boolean,
         public permissions?: string,
-        public communication_disabled_until?: Date | null
+        public communication_disabled_until?: Date | null,
     ) {}
 }

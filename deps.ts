@@ -1,1 +1,1 @@
-export * from "./discord-gateways/src/index.ts";
+export * from './discord-gateways/src/index.ts';

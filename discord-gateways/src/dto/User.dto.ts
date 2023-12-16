@@ -1,8 +1,8 @@
 export class UserDto {
     constructor(
         public id: string,
-        public username: string, 
-        public discriminator: string, 
+        public username: string,
+        public discriminator: string,
         public avatar: string,
         public bot?: boolean,
         public system?: boolean,
@@ -14,5 +14,6 @@ export class UserDto {
         public email?: string | null,
         public flags?: number,
         public premium_type?: number,
-        public public_flags?: number) {}
+        public public_flags?: number,
+    ) {}
 }

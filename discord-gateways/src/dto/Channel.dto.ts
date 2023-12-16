@@ -1,7 +1,7 @@
-import { OverwriteDto } from "./Overwrite.dto.ts";
-import { ThreadMemberDto } from "./ThreadMember.dto.ts";
-import { ThreadMetadataDto } from "./ThreadMetadata.dto.ts";
-import { UserDto } from "./User.dto.ts";
+import { OverwriteDto } from './Overwrite.dto.ts';
+import { ThreadMemberDto } from './ThreadMember.dto.ts';
+import { ThreadMetadataDto } from './ThreadMetadata.dto.ts';
+import { UserDto } from './User.dto.ts';
 
 export class ChannelDto {
     constructor(
@@ -30,6 +30,6 @@ export class ChannelDto {
         public thread_metadata?: ThreadMetadataDto,
         public member?: ThreadMemberDto,
         public default_auto_archive_duration?: number,
-        public permissions?: string
+        public permissions?: string,
     ) {}
 }

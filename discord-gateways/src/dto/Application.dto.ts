@@ -1,6 +1,6 @@
-import { InstallParamsDto } from "./InstallParams.dto.ts";
-import { TeamDto } from "./Team.dto.ts";
-import { UserDto } from "./User.dto.ts";
+import { InstallParamsDto } from './InstallParams.dto.ts';
+import { TeamDto } from './Team.dto.ts';
+import { UserDto } from './User.dto.ts';
 
 export class ApplicationDto {
     constructor(
@@ -23,6 +23,6 @@ export class ApplicationDto {
         public flags?: number,
         public tags?: string[],
         public install_params?: InstallParamsDto,
-        public custom_install_url?: string
+        public custom_install_url?: string,
     ) {}
 }

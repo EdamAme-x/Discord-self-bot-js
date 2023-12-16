@@ -1,5 +1,5 @@
-import { RoleDto } from "./Role.dto.ts";
-import { UserDto } from "./User.dto.ts";
+import { RoleDto } from './Role.dto.ts';
+import { UserDto } from './User.dto.ts';
 
 export class EmojiDto {
     constructor(
@@ -10,6 +10,6 @@ export class EmojiDto {
         public require_colons?: boolean,
         public managed?: boolean,
         public animated?: boolean,
-        public available?: boolean
+        public available?: boolean,
     ) {}
 }

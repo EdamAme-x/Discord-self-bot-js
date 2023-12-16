@@ -6,7 +6,7 @@ export declare interface DiscordClient {
     on(event: 'messageCreate', listener: (message: MessageDto) => void): this;
 }
 
-export type NodeJS = any
+export type NodeJS = any;
 
 export class DiscordClient extends EventEmitter {
     private discordToken: string;
@@ -57,25 +57,61 @@ export class DiscordClient extends EventEmitter {
             console.log(payload);
 
             if (op == 1) {
-                this.heartbeat();
+                this.ws.send(
+                    JSON.stringify({
+                        op: 1,
+                        d: this.seq,
+                    }),
+                );
+
+                this.ack.push(new Date().getTime());
+
+                if (!this.ackTimer) {
+                    this.ackTimer = setInterval(() => {
+                        if (this.ack.length > 0) {
+                            if (new Date().getTime() - this.ack[0] > 5000) {
+                                this.ws.close();
+                            }
+                        }
+                    }, 5000);
+                }
             } else if (op == 9) {
-                    setTimeout(() => {
-                        this.identify();
-                    }, 3000);
+                setTimeout(() => {
+                    this.identify();
+                }, 3000);
             } else if (op == 10) {
                 this.heartbeatTimer = setInterval(() => {
-                    this.heartbeat();
+                    this.ws.send(
+                        JSON.stringify({
+                            op: 1,
+                            d: this.seq,
+                        }),
+                    );
+
+                    this.ack.push(new Date().getTime());
+
+                    if (!this.ackTimer) {
+                        this.ackTimer = setInterval(() => {
+                            if (this.ack.length > 0) {
+                                if (new Date().getTime() - this.ack[0] > 5000) {
+                                    this.ws.close();
+                                }
+                            }
+                        }, 5000);
+                    }
                 }, d.heartbeat_interval);
 
                 if (this.session_id && this.seq) {
-                    this.ws.send(JSON.stringify({
-                        'op': 6,
-                        'd': {
-                            'token': this.discordToken,
-                            'session_id': this.session_id,
-                            'seq': this.seq
-                        }
-                    }));
+                    this.ws.send(
+                        JSON.stringify({
+                            op: 6,
+                            d: {
+                                token: this.discordToken,
+                                session_id: this.session_id,
+                                seq: this.seq,
+                            },
+                        }),
+                    );
                 } else {
                     this.identify();
                 }
@@ -94,36 +130,19 @@ export class DiscordClient extends EventEmitter {
         });
     }
 
-    private heartbeat() {
-        this.ws.send(JSON.stringify({
-            'op': 1,
-            'd': this.seq
-        }));
-
-        this.ack.push(new Date().getTime());
-
-        if (!this.ackTimer) {
-            this.ackTimer = setInterval(() => {
-                if (this.ack.length > 0) {
-                    if (new Date().getTime() - this.ack[0] > 5000) {
-                        this.ws.close();
-                    }
-                }
-            }, 5000)
-        }
-    }
-
     private identify() {
-        this.ws.send(JSON.stringify({
-            'op': 2,
-            'd': {
-                'token': this.discordToken,
-                'properties': {
-                    '$os': 'linux',
-                    '$browser': 'chrome',
-                    '$device': 'chrome'
-                }
-            }
-        }));
+        this.ws.send(
+            JSON.stringify({
+                op: 2,
+                d: {
+                    token: this.discordToken,
+                    properties: {
+                        $os: 'linux',
+                        $browser: 'chrome',
+                        $device: 'chrome',
+                    },
+                },
+            }),
+        );
     }
 }

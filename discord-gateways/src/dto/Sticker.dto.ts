@@ -1,4 +1,4 @@
-import { UserDto } from "./User.dto.ts";
+import { UserDto } from './User.dto.ts';
 
 export class StickerDto {
     constructor(
@@ -13,6 +13,6 @@ export class StickerDto {
         public available?: boolean,
         public guild_id?: string,
         public user?: UserDto,
-        public sort_value?: number
+        public sort_value?: number,
     ) {}
 }

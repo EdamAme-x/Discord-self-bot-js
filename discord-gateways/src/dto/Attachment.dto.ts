@@ -9,6 +9,6 @@ export class AttachmentDto {
         public content_type?: string,
         public height?: number | null,
         public width?: number | null,
-        public ephemeral?: boolean
+        public ephemeral?: boolean,
     ) {}
 }

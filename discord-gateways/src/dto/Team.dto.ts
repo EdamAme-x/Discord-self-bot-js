@@ -1,4 +1,4 @@
-import { TeamMemberDto } from "./TeamMember.dto.ts";
+import { TeamMemberDto } from './TeamMember.dto.ts';
 
 export class TeamDto {
     constructor(
@@ -6,6 +6,6 @@ export class TeamDto {
         public id: string,
         public members: TeamMemberDto[],
         public name: string,
-        public owner_user_id: string
+        public owner_user_id: string,
     ) {}
 }

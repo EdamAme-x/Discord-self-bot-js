@@ -1,9 +1,9 @@
-import { RoleTagsDto } from "./RoleTags.dto.ts";
+import { RoleTagsDto } from './RoleTags.dto.ts';
 
 export class RoleDto {
     constructor(
         public id: string,
-        public name: string, 
+        public name: string,
         public color: number,
         public hoist: boolean,
         public position: number,
@@ -12,6 +12,6 @@ export class RoleDto {
         public mentionable: boolean,
         public icon?: string | null,
         public unicode_emoji?: string | null,
-        public tags?: RoleTagsDto
+        public tags?: RoleTagsDto,
     ) {}
 }

@@ -1,11 +1,11 @@
-import { GuildMemberDto } from "./GuildMember.dto.ts";
-import { UserDto } from "./User.dto.ts";
+import { GuildMemberDto } from './GuildMember.dto.ts';
+import { UserDto } from './User.dto.ts';
 
 export class MentionsDto extends UserDto {
     constructor(
         public id: string,
-        public username: string, 
-        public discriminator: string, 
+        public username: string,
+        public discriminator: string,
         public avatar: string,
         public member: GuildMemberDto,
         public bot?: boolean,
@@ -18,7 +18,8 @@ export class MentionsDto extends UserDto {
         public email?: string | null,
         public flags?: number,
         public premium_type?: number,
-        public public_flags?: number) {
-            super(id, username, discriminator, avatar, bot, system, mfa_enabled, banner, accent_color, locale, verified, email, flags, premium_type, public_flags);
-        }
+        public public_flags?: number,
+    ) {
+        super(id, username, discriminator, avatar, bot, system, mfa_enabled, banner, accent_color, locale, verified, email, flags, premium_type, public_flags);
+    }
 }

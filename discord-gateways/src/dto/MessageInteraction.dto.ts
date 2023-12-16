@@ -1,5 +1,5 @@
-import { GuildMemberDto } from "./GuildMember.dto.ts";
-import { UserDto } from "./User.dto.ts";
+import { GuildMemberDto } from './GuildMember.dto.ts';
+import { UserDto } from './User.dto.ts';
 
 export class MessageInteractionDto {
     constructor(
@@ -7,6 +7,6 @@ export class MessageInteractionDto {
         public type: unknown,
         public name: string,
         public user: UserDto,
-        public member?: GuildMemberDto
+        public member?: GuildMemberDto,
     ) {}
 }
