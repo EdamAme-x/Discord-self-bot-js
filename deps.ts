@@ -1,1 +1,1 @@
-export * from "@/disgate.js";
+export * from "./discord-gateways/src/index.ts";

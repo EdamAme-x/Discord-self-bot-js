@@ -1,0 +1,51 @@
+{
+  "name": "discord-gateways",
+  "version": "1.0.2",
+  "description": "Connects to Discord Gateway through websocket and emits events on each Discord Intent",
+  "files": [
+    "dist"
+  ],
+  "main": "dist",
+  "scripts": {
+    "lint": "eslint ./src/**/*.ts --fix",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "start": "ts-node src/index.ts"
+  },
+  "author": {
+    "name": "George Soultos",
+    "email": "soultos@protonmail.ch",
+    "url": "https://gsoultos.com"
+  },
+  "keywords": [
+    "discord",
+    "api",
+    "node"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gsoultos/discord-gateways.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gsoultos/discord-gateways/issues"
+  },
+  "engines": {
+    "node": ">=16.13.2"
+  },
+  "packageManager": "npm@8.1.2",
+  "license": "GPL-3.0-only",
+  "dependencies": {
+    "@types/ws": "^8.5.5",
+    "ws": "^8.14.0"
+  },
+  "devDependencies": {
+    "ts-node": "^10.7.0",
+    "@eslint/create-config": "^0.1.2",
+    "@types/node": "^17.0.23",
+    "@typescript-eslint/eslint-plugin": "^5.17.0",
+    "@typescript-eslint/parser": "^5.17.0",
+    "eslint": "^8.12.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0"
+  }
+}
