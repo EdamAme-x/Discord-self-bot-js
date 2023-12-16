@@ -19,6 +19,7 @@ export class DiscordClient extends EventEmitter {
 
     constructor(discordToken: string) {
         super();
+        console.log('[@] Starting Discord Client');
         this.discordToken = discordToken;
         this.seq = null;
         this.session_id = null;
@@ -46,7 +47,7 @@ export class DiscordClient extends EventEmitter {
             this.session_id = null;
             this.ack = [];
 
-            setTimeout(this.connect, 5000);
+            setTimeout(() => this.connect(), 5000);  // 修正: setTimeout内でthis.connect()を呼ぶ
         });
 
         this.ws.on('message', (data: string) => {
@@ -54,7 +55,7 @@ export class DiscordClient extends EventEmitter {
             const { op, d, s, t } = payload;
 
             this.seq = s ? s : this.seq;
-            console.log(payload);
+            console.log(`[>] OP: ${op}`);
 
             if (op == 1) {
                 this.ws.send(
